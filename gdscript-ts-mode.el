@@ -147,7 +147,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'string
-   '(string "\"" @font-lock-string-face)
+   '((string) "\"" @font-lock-string-face)
 
    :language 'gdscript
    :feature 'function
