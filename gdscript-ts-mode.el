@@ -140,6 +140,8 @@ It must be a function with two arguments: TYPE and NAME.")
    :language 'gdscript
    :feature 'function
    '((call (identifier) @font-lock-function-call-face)
+     (call (identifier) @font-lock-function-call-face
+           (:match ,(rx (| "yield")) @font-lock-keyword-face))
      (attribute_call (identifier) @font-lock-function-call-face))
 
    :language 'gdscript
