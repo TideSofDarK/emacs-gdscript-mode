@@ -118,8 +118,8 @@ It must be a function with two arguments: TYPE and NAME.")
    :language 'gdscript
    :feature 'type
    `(
-     ;; ((identifier) @font-lock-type-face
-     ;;  (:match ,(rx (| "int" "bool" "float" "void")) @font-lock-type-face))
+     (type (identifier) @font-lock-type-face (:match ,(rx (| "int" "bool" "float" "void")) @font-lock-type-face))
+     (subscript (identifier) @font-lock-type-face (:match ,(rx (| "int" "bool" "float" "void")) @font-lock-type-face))
      ((identifier) @font-lock-type-face
       (:match ,gdscript-ts--type-regex @font-lock-type-face))
      (enum_definition name: (_) @font-lock-type-face)
