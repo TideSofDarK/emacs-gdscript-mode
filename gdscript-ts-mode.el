@@ -80,9 +80,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
 ;;; Types
 
-(defvar gdscript-ts--type-regex "\\`[A-Z][a-zA-Z0-9_]*[a-z][a-zA-Z0-9_]*\\'")
-
-(defvar gdscript-ts--lower-case-type-regex (rx (| "int" "bool" "float" "void")))
+(defvar gdscript-ts--type-regex (rx (or (| "int" "bool" "float" "void") "\\`[A-Z][a-zA-Z0-9_]*[a-z][a-zA-Z0-9_]*\\'")))
 
 ;;; Constants
 
@@ -124,7 +122,6 @@ It must be a function with two arguments: TYPE and NAME.")
    :language 'gdscript
    :feature 'type
    `(((identifier) @font-lock-type-face (:match ,gdscript-ts--type-regex @font-lock-type-face))
-     ((identifier) @font-lock-type-face (:match "int" @font-lock-type-face))
      (enum_definition name: (_) @font-lock-type-face)
      (get_node) @font-lock-type-face)
 
