@@ -87,8 +87,8 @@ It must be a function with two arguments: TYPE and NAME.")
 
 (defvar gdscript-ts--feature-list
   '(( comment definition)
-    ( keyword string type)
-    ( number constant escape-sequence annotation)
+    ( keyword string type annotation)
+    ( number constant escape-sequence)
     ( punctuation function operator property)))
 
 (defvar gdscript-ts--treesit-settings
@@ -116,7 +116,6 @@ It must be a function with two arguments: TYPE and NAME.")
    `((enum_definition name: (_) @font-lock-type-face)
      ((identifier) @font-lock-type-face
       (:match ,gdscript-ts--type-regex @font-lock-type-face))
-     ((type) @font-lock-type-face)
      (get_node) @font-lock-type-face)
 
    :language 'gdscript
