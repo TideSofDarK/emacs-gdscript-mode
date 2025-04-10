@@ -141,13 +141,13 @@ It must be a function with two arguments: TYPE and NAME.")
      (await_expression "await" @font-lock-keyword-face)
      (static_keyword) @font-lock-keyword-face)
 
-   :language 'gdscript
-   :feature 'escape-sequence
-   '((escape_sequence) @font-lock-escape-face)
+   ;; :language 'gdscript
+   ;; :feature 'escape-sequence
+   ;; '((escape_sequence) @font-lock-escape-face)
 
    :language 'gdscript
    :feature 'string
-   '((string) @font-lock-string-face)
+   '((string _ @font-lock-string-face (escape_sequence) @font-lock-escape-face))
 
    :language 'gdscript
    :feature 'function
