@@ -126,7 +126,7 @@ It must be a function with two arguments: TYPE and NAME.")
    `(((identifier) @font-lock-type-face
       (:match ,gdscript-ts--type-regex @font-lock-type-face))
      (((identifier) @font-lock-type-face
-      (:match '("int" "bool" "float" "void") @font-lock-type-face)))
+      (:match ["int" "bool" "float" "void"] @font-lock-type-face)))
      (enum_definition name: (_) @font-lock-type-face)
      (get_node) @font-lock-type-face)
 
