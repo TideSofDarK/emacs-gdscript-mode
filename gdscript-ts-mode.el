@@ -98,7 +98,8 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'constant
-   `((const_statement name: (name) @font-lock-constant-face)
+   `((null) @font-lock-keyword-face
+     (const_statement name: (name) @font-lock-constant-face)
      (enumerator left: (identifier) @font-lock-constant-face)
      ((identifier) @font-lock-constant-face
       (:match ,gdscript-ts--constant-regex @font-lock-constant-face))
@@ -137,7 +138,6 @@ It must be a function with two arguments: TYPE and NAME.")
      (attribute (identifier) @font-lock-keyword-face
                 (:match ,(rx (| "self")) @font-lock-keyword-face))
      (await_expression "await" @font-lock-keyword-face)
-     (null) @font-lock-keyword-face
      (static_keyword) @font-lock-keyword-face
      ([(false) (true)] @font-lock-keyword-face))
 
