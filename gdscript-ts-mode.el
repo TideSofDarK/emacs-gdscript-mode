@@ -142,12 +142,8 @@ It must be a function with two arguments: TYPE and NAME.")
      (static_keyword) @font-lock-keyword-face)
 
    :language 'gdscript
-   :feature 'escape-sequence
-   '(escape_sequence @font-lock-escape-face)
-
-   :language 'gdscript
    :feature 'string
-   '((string) _ @font-lock-string-face)
+   '((string) @font-lock-string-face)
 
    :language 'gdscript
    :feature 'function
@@ -167,6 +163,10 @@ It must be a function with two arguments: TYPE and NAME.")
    `(["+" "+="   "-" "-=" "*" "*=" "/" "/=" "^"  "^="  ">"  ">="
       "<" "<="   "|" "|=" "%" "%=" "&" "&=" ">>" ">>=" "<<" "<<="
       "||" "&&" "==" "!=" "->" "~" "="] @font-lock-operator-face)
+
+   :language 'gdscript
+   :feature 'escape-sequence
+   '((escape_sequence) @font-lock-escape-face)
 
    :language 'gdscript
    :feature 'annotation
