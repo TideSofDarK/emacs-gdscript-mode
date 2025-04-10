@@ -104,10 +104,18 @@ It must be a function with two arguments: TYPE and NAME.")
       (name) @font-lock-function-name-face)
      (parameters (identifier) @font-lock-variable-name-face))
 
+   :feature 'constant
+   :language 'gdscript
+   `((const_statement name: (name) @font-lock-constant-face)
+     (enumerator left: (identifier) @font-lock-constant-face)
+     ((identifier) @font-lock-constant-face (:match ,gdscript-ts--constant-regex @font-lock-constant-face))
+     (variable_statement name: (name) @font-lock-constant-face (:match ,gdscript-ts--constant-regex @font-lock-constant-face)))
+
    :language 'gdscript
    :feature 'keyword
    `(([,@gdscript-ts--treesit-keywords] @font-lock-keyword-face)
      (await_expression "await" @font-lock-keyword-face)
+     (static_keyword) @font-lock-keyword-face
      ([(false) (true)] @font-lock-keyword-face))
 
    :language 'gdscript
@@ -145,13 +153,6 @@ It must be a function with two arguments: TYPE and NAME.")
       "<" "<="   "|" "|=" "%" "%=" "&" "&=" ">>" ">>=" "<<" "<<="
       "||" "&&" "==" "!=" "->" "~" "="] @font-lock-operator-face)
 
-   :feature 'constant
-   :language 'gdscript
-   `((const_statement name: (name) @font-lock-constant-face)
-     (enumerator left: (identifier) @font-lock-constant-face)
-     ((identifier) @font-lock-constant-face (:match ,gdscript-ts--constant-regex @font-lock-constant-face))
-     (variable_statement name: (name) @font-lock-constant-face (:match ,gdscript-ts--constant-regex @font-lock-constant-face)))
-
    :feature 'escape-sequence
    :language 'gdscript
    '((escape_sequence) @font-lock-escape-face)
@@ -162,7 +163,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :feature 'punctuation
    :language 'gdscript
-   `(["[" "]" "(" ")" "{" "}" "," ":" "."] @font-lock)
+   `(["[" "]" "(" ")" "{" "}" "," ":" "."] @font-lock-punctuation-face)
 
   ))
 
