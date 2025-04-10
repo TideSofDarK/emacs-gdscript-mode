@@ -125,8 +125,8 @@ It must be a function with two arguments: TYPE and NAME.")
    :feature 'type
    `(((identifier) @font-lock-type-face
       (:match ,gdscript-ts--type-regex @font-lock-type-face))
-     (([type subscript] (identifier) @font-lock-type-face
-      (:match ,gdscript-ts--lower-case-type-regex @font-lock-type-face)))
+     (((identifier) @font-lock-type-face
+      (:match '("int" "bool" "float" "void") @font-lock-type-face)))
      (enum_definition name: (_) @font-lock-type-face)
      (get_node) @font-lock-type-face)
 
@@ -140,9 +140,9 @@ It must be a function with two arguments: TYPE and NAME.")
    :feature 'keyword
    `(([,@gdscript-ts--treesit-keywords] @font-lock-keyword-face)
      (call (identifier) @font-lock-keyword-face
-           (:match ,(rx (| "yield")) @font-lock-keyword-face))
-     (attribute (identifier) @font-lock-keyword-face
-                (:match ,(rx (| "self")) @font-lock-keyword-face))
+           (:match "yield" @font-lock-keyword-face))
+     ((identifier) @font-lock-keyword-face
+                (:match "self" @font-lock-keyword-face))
      (await_expression "await" @font-lock-keyword-face)
      (static_keyword) @font-lock-keyword-face)
 
