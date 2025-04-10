@@ -81,9 +81,9 @@ It must be a function with two arguments: TYPE and NAME.")
 
 ;;; Setting
 
-(defvar gdscript-ts--constant-regex "\\`[A-Z_][A-Z0-9_]+\\'" "")
+(defvar gdscript-ts--constant-regex "\\`[A-Z_][A-Z0-9_]+\\'")
 
-(defvar gdscript-ts--type-regex "\\`[A-Z_][A-Z0-9_]+\\'" "")
+(defvar gdscript-ts--type-regex "\\`[A-Z][a-zA-Z0-9_]*[a-z][a-zA-Z0-9_]*\\'")
 
 (defvar gdscript-ts--feature-list
   '(( comment definition)
@@ -124,6 +124,8 @@ It must be a function with two arguments: TYPE and NAME.")
    :language 'gdscript
    :feature 'keyword
    `(([,@gdscript-ts--treesit-keywords] @font-lock-keyword-face)
+     (attribute (identifier) @font-lock-keyword-face
+                (:match ,(rx (| "self")) @font-lock-keyword-face))
      (await_expression "await" @font-lock-keyword-face)
      (static_keyword) @font-lock-keyword-face
      ([(false) (true)] @font-lock-keyword-face))
