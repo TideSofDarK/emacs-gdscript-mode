@@ -80,7 +80,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
 ;;; Types
 
-(defvar gdscript-ts--type-regex "\\`int|bool|float|void|[A-Z][a-zA-Z0-9_]*[a-z][a-zA-Z0-9_]*\\'")
+(defvar gdscript-ts--type-regex "\\`\b(int|bool|float|void|[A-Z][a-zA-Z0-9_]*[a-z][a-zA-Z0-9_]*)\b\\'")
 
 ;;; Constants
 
