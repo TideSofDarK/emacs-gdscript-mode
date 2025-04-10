@@ -97,6 +97,16 @@ It must be a function with two arguments: TYPE and NAME.")
    :feature 'comment
    '((comment) @font-lock-comment-face)
 
+   :feature 'constant
+   :language 'gdscript
+   `((const_statement name: (name) @font-lock-constant-face)
+     (enumerator left: (identifier) @font-lock-constant-face)
+     ((identifier) @font-lock-constant-face
+      (:match ,gdscript-ts--constant-regex @font-lock-constant-face))
+     (variable_statement
+      name: (name) @font-lock-constant-face
+      (:match ,gdscript-ts--constant-regex @font-lock-constant-face)))
+
    :language 'gdscript
    :feature 'type
    `((enum_definition name: (_) @font-lock-type-face)
@@ -108,16 +118,8 @@ It must be a function with two arguments: TYPE and NAME.")
    :language 'gdscript
    :feature 'definition
    '((function_definition (name) @font-lock-function-name-face)
-     (class_definition
-      (name) @font-lock-function-name-face)
+     (class_definition (name) @font-lock-function-name-face)
      (parameters (identifier) @font-lock-variable-name-face))
-
-   :feature 'constant
-   :language 'gdscript
-   `((const_statement name: (name) @font-lock-constant-face)
-     (enumerator left: (identifier) @font-lock-constant-face)
-     ((identifier) @font-lock-constant-face (:match ,gdscript-ts--constant-regex @font-lock-constant-face))
-     (variable_statement name: (name) @font-lock-constant-face (:match ,gdscript-ts--constant-regex @font-lock-constant-face)))
 
    :language 'gdscript
    :feature 'keyword
