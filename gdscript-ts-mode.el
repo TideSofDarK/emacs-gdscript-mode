@@ -91,8 +91,8 @@ It must be a function with two arguments: TYPE and NAME.")
 (defvar gdscript-ts--feature-list
   '(( comment definition)
     ( keyword string type annotation)
-    ( number constant escape-sequence)
-    ( bracket delimiter function operator property)))
+    ( number constant )
+    ( bracket delimiter function operator property escape-sequence)))
 
 (defvar gdscript-ts--treesit-settings
   (treesit-font-lock-rules
