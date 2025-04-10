@@ -107,6 +107,10 @@ It must be a function with two arguments: TYPE and NAME.")
       name: (name) @font-lock-constant-face
       (:match ,gdscript-ts--constant-regex @font-lock-constant-face)))
 
+   :feature 'punctuation
+   :language 'gdscript
+   `(["[" "]" "(" ")" "{" "}" "," ":" "."] @font-lock-punctuation-face)
+
    :language 'gdscript
    :feature 'type
    `((enum_definition name: (_) @font-lock-type-face)
@@ -163,13 +167,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :feature 'annotation
    :language 'gdscript
-   '((annotation "@" @font-lock-preprocessor-face (identifier) @font-lock-preprocessor-face))
-
-   :feature 'punctuation
-   :language 'gdscript
-   `(["[" "]" "(" ")" "{" "}" "," ":" "."] @font-lock-punctuation-face)
-
-  ))
+   '((annotation "@" @font-lock-preprocessor-face (identifier) @font-lock-preprocessor-face))))
 
 
 ;;; Funtion
