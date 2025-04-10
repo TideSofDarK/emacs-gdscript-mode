@@ -91,8 +91,8 @@ It must be a function with two arguments: TYPE and NAME.")
 (defvar gdscript-ts--feature-list
   '(( comment definition)
     ( keyword string type annotation)
-    ( number constant )
-    ( bracket delimiter function operator property escape-sequence)))
+    ( number constant escape-sequence)
+    ( bracket delimiter function operator property)))
 
 (defvar gdscript-ts--treesit-settings
   (treesit-font-lock-rules
@@ -142,12 +142,12 @@ It must be a function with two arguments: TYPE and NAME.")
      (static_keyword) @font-lock-keyword-face)
 
    :language 'gdscript
-   :feature 'string
-   '(string "\"" @font-lock-string-face)
-
-   :language 'gdscript
    :feature 'escape-sequence
    '(escape_sequence @font-lock-escape-face)
+
+   :language 'gdscript
+   :feature 'string
+   '(string "\"" @font-lock-string-face)
 
    :language 'gdscript
    :feature 'function
