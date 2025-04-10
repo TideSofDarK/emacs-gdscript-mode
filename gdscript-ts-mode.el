@@ -117,7 +117,7 @@ It must be a function with two arguments: TYPE and NAME.")
    :language 'gdscript
    :feature 'type
    `(((identifier) @font-lock-type-face
-      (:match ,(rx (| "int" "bool" "float")) @font-lock-type-face))
+      (:match ,(rx (| "int" "bool" "float" "void")) @font-lock-type-face))
      (enum_definition name: (_) @font-lock-type-face)
      ((identifier) @font-lock-type-face
       (:match ,gdscript-ts--type-regex @font-lock-type-face))
@@ -137,6 +137,7 @@ It must be a function with two arguments: TYPE and NAME.")
      (attribute (identifier) @font-lock-keyword-face
                 (:match ,(rx (| "self")) @font-lock-keyword-face))
      (await_expression "await" @font-lock-keyword-face)
+     (null) @font-lock-keyword-face
      (static_keyword) @font-lock-keyword-face
      ([(false) (true)] @font-lock-keyword-face))
 
