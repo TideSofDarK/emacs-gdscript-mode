@@ -76,7 +76,7 @@ It must be a function with two arguments: TYPE and NAME.")
                                         "export" "extends" "for" "func" "if" "in" "is"
                                         "master" "match" "not" "onready" "or" "pass"
                                         "puppet" "remote" "remotesync" "return" "setget" "signal"
-                                        "var" "while"))
+                                        "var" "while" "self"))
 
 
 ;;; Setting
@@ -96,6 +96,14 @@ It must be a function with two arguments: TYPE and NAME.")
    :language 'gdscript
    :feature 'comment
    '((comment) @font-lock-comment-face)
+
+   :language 'gdscript
+   :feature 'type
+   `((enum_definition name: (_) @font-lock-type-face)
+     ((identifier) @font-lock-type-face
+      (:match ,gdscript-ts--type-regex @font-lock-type-face))
+     ((type) @font-lock-type-face)
+     (get_node) @font-lock-type-face)
 
    :language 'gdscript
    :feature 'definition
@@ -121,14 +129,6 @@ It must be a function with two arguments: TYPE and NAME.")
    :language 'gdscript
    :feature 'string
    '((string) @font-lock-string-face)
-
-   :language 'gdscript
-   :feature 'type
-   `((enum_definition name: (_) @font-lock-type-face)
-     ((identifier) @font-lock-type-face
-      (:match ,gdscript-ts--type-regex @font-lock-type-face))
-     ((type) @font-lock-type-face)
-     (get_node) @font-lock-type-face)
 
    :feature 'function
    :language 'gdscript
