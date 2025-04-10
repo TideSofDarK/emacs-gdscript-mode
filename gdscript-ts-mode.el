@@ -98,7 +98,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'constant
-   `((null) @font-lock-keyword-face
+   `((null) @font-lock-constant-face
      (const_statement name: (name) @font-lock-constant-face)
      (enumerator left: (identifier) @font-lock-constant-face)
      ((identifier) @font-lock-constant-face
