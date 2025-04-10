@@ -78,11 +78,17 @@ It must be a function with two arguments: TYPE and NAME.")
                                         "puppet" "remote" "remotesync" "return" "setget" "signal"
                                         "var" "while"))
 
-;;; Setting
+;;; Types
 
 (defvar gdscript-ts--type-regex "\\`[A-Z][a-zA-Z0-9_]*[a-z][a-zA-Z0-9_]*\\'")
 
+(defvar gdscript-ts--lower-case-types '("int" "bool" "float" "void"))
+
+;;; Constants
+
 (defvar gdscript-ts--constant-regex "\\`[A-Z_][A-Z0-9_]+\\'")
+
+;;; Setting
 
 (defvar gdscript-ts--feature-list
   '(( comment definition)
@@ -117,9 +123,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'type
-   `(
-     (type (identifier) @font-lock-type-face (:match ,(rx (| "int" "bool" "float" "void")) @font-lock-type-face))
-     (subscript (identifier) @font-lock-type-face (:match ,(rx (| "int" "bool" "float" "void")) @font-lock-type-face))
+   `(([,@gdscript-ts--lower-case-types] @font-lock-type-face)
      ((identifier) @font-lock-type-face
       (:match ,gdscript-ts--type-regex @font-lock-type-face))
      (enum_definition name: (_) @font-lock-type-face)
