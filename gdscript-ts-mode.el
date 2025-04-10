@@ -72,12 +72,24 @@ It must be a function with two arguments: TYPE and NAME.")
 ;;; Keywords
 
 (defvar gdscript-ts--treesit-keywords '("and" "as" "break" "class" "class_name"
-                                        "const" "continue" "elif" "else" "enum" "export" "extends" "for" "func" "if" "in" "is"
-                                        "master" "match" "not" "onready" "or" "pass"  "puppet" "remote" "remotesync" "return" "setget" "signal"
-                                        "var" "while"))
+                                        "const" "continue" "elif" "else" "enum"
+                                        "export" "extends" "for" "func" "if" "in" "is"
+                                        "master" "match" "not" "onready" "or" "pass"
+                                        "puppet" "remote" "remotesync" "return" "setget" "signal"
+                                        "var" "while" "static" "await" "yield"))
 
 
 ;;; Setting
+
+(defvar gdscript-ts--constant-regex "\\`[A-Z_][A-Z0-9_]+\\'" "")
+
+(defvar gdscript-ts--type-regex "\\`[A-Z_][A-Z0-9_]+\\'" "")
+
+(defvar gdscript-ts--feature-list
+  '(( comment definition)
+    ( keyword string type)
+    ( number constant escape-sequence annotation)
+    ( punctuation function operator property variable)))
 
 (defvar gdscript-ts--treesit-settings
   (treesit-font-lock-rules
@@ -103,7 +115,10 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'type
-   '(((type) @font-lock-type-face)
+   `((enum_definition name: (_) @font-lock-type-face)
+     ((identifier) @font-lock-type-face
+      (:match ,gdscript-ts--type-regex @font-lock-type-face))
+     ((type) @font-lock-type-face)
      (get_node) @font-lock-type-face)
 
    :feature 'function
@@ -125,7 +140,30 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :feature 'operator
    :language 'gdscript
-   `(["+" "-" "*" "/" "^" ">" "<" "="] @font-lock-operator-face)))
+   `(["+" "+="   "-" "-=" "*" "*=" "/" "/=" "^"  "^="  ">"  ">="
+      "<" "<="   "|" "|=" "%" "%=" "&" "&=" ">>" ">>=" "<<" "<<="
+      "||" "&&" "==" "!=" "->" "~" "="] @font-lock-operator-face)
+
+   :feature 'constant
+   :language 'gdscript
+   `((const_statement name: (name) @font-lock-constant-face)
+     (enumerator left: (identifier) @font-lock-constant-face)
+     ((identifier) @font-lock-constant-face (:match ,gdscript-ts--constant-regex @font-lock-constant-face))
+     (variable_statement name: (name) @font-lock-constant-face (:match ,gdscript-ts--constant-regex @font-lock-constant-face)))
+
+   :feature 'escape-sequence
+   :language 'gdscript
+   '((escape_sequence) @font-lock-escape-face)
+
+   :feature 'annotation
+   :language 'gdscript
+   '((annotation "@" @font-lock-preprocessor-face (identifier) @font-lock-preprocessor-face))
+
+   :feature 'punctuation
+   :language 'gdscript
+   `(["[" "]" "(" ")" "{" "}" "," ":" "."] @font-lock)
+
+  ))
 
 
 ;;; Funtion
@@ -220,10 +258,7 @@ Similar to `gdscript-imenu-create-index' but use tree-sitter."
   :syntax-table gdscript-mode-syntax-table
   (when (treesit-ready-p 'gdscript)
     (treesit-parser-create 'gdscript)
-    (setq-local treesit-font-lock-feature-list
-                '(( comment definition)
-                  ( keyword string type)
-                  ( function variable number property operator)))
+    (setq-local treesit-font-lock-feature-list gdscript-ts--feature-list)
     (setq-local treesit-font-lock-settings gdscript-ts--treesit-settings)
     ;;; TODO: create-imenu
     (setq-local imenu-create-index-function
