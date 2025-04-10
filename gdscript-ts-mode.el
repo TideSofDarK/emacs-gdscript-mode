@@ -89,7 +89,7 @@ It must be a function with two arguments: TYPE and NAME.")
   '(( comment definition)
     ( keyword string type annotation)
     ( number constant escape-sequence)
-    ( punctuation function operator property)))
+    ( bracket delimiter function operator property)))
 
 (defvar gdscript-ts--treesit-settings
   (treesit-font-lock-rules
@@ -108,8 +108,12 @@ It must be a function with two arguments: TYPE and NAME.")
       (:match ,gdscript-ts--constant-regex @font-lock-constant-face)))
 
    :language 'gdscript
-   :feature 'punctuation
-   `(["[" "]" "(" ")" "{" "}" "," ":" "."] @font-lock-punctuation-face)
+   :feature 'bracket
+   `(["[" "]" "(" ")" "{" "}"] @font-lock-bracket-face)
+
+   :language 'gdscript
+   :feature 'delimiter
+   `(["," ":" "."] @font-lock-delimiter-face)
 
    :language 'gdscript
    :feature 'type
