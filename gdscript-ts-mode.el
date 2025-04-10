@@ -89,7 +89,7 @@ It must be a function with two arguments: TYPE and NAME.")
   '(( comment definition)
     ( keyword string type)
     ( number constant escape-sequence annotation)
-    ( punctuation function operator property variable)))
+    ( punctuation function operator property)))
 
 (defvar gdscript-ts--treesit-settings
   (treesit-font-lock-rules
@@ -97,8 +97,8 @@ It must be a function with two arguments: TYPE and NAME.")
    :feature 'comment
    '((comment) @font-lock-comment-face)
 
-   :feature 'constant
    :language 'gdscript
+   :feature 'constant
    `((const_statement name: (name) @font-lock-constant-face)
      (enumerator left: (identifier) @font-lock-constant-face)
      ((identifier) @font-lock-constant-face
@@ -107,8 +107,8 @@ It must be a function with two arguments: TYPE and NAME.")
       name: (name) @font-lock-constant-face
       (:match ,gdscript-ts--constant-regex @font-lock-constant-face)))
 
-   :feature 'punctuation
    :language 'gdscript
+   :feature 'punctuation
    `(["[" "]" "(" ")" "{" "}" "," ":" "."] @font-lock-punctuation-face)
 
    :language 'gdscript
@@ -138,21 +138,17 @@ It must be a function with two arguments: TYPE and NAME.")
    :feature 'string
    '((string) @font-lock-string-face)
 
-   :feature 'function
    :language 'gdscript
+   :feature 'function
    '((call (identifier) @font-lock-function-call-face)
      (attribute_call (identifier) @font-lock-function-call-face))
 
    :language 'gdscript
-   :feature 'variable
-   '((_ (name) @font-lock-variable-name-face))
-
    :feature 'number
-   :language 'gdscript
    '(([(integer) (float)] @font-lock-number-face))
 
-   :feature 'property
    :language 'gdscript
+   :feature 'property
    '((attribute (identifier) (identifier) @font-lock-property-use-face))
 
    :feature 'operator
@@ -161,12 +157,12 @@ It must be a function with two arguments: TYPE and NAME.")
       "<" "<="   "|" "|=" "%" "%=" "&" "&=" ">>" ">>=" "<<" "<<="
       "||" "&&" "==" "!=" "->" "~" "="] @font-lock-operator-face)
 
-   :feature 'escape-sequence
    :language 'gdscript
+   :feature 'escape-sequence
    '((escape_sequence) @font-lock-escape-face)
 
-   :feature 'annotation
    :language 'gdscript
+   :feature 'annotation
    '((annotation "@" @font-lock-preprocessor-face (identifier) @font-lock-preprocessor-face))))
 
 
