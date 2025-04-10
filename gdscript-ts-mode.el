@@ -125,8 +125,8 @@ It must be a function with two arguments: TYPE and NAME.")
    :feature 'type
    `(((identifier) @font-lock-type-face
       (:match ,gdscript-ts--type-regex @font-lock-type-face))
-     ([(type) (subscript)] (identifier) @font-lock-type-face
-      (:match ,gdscript-ts--lower-case-type-regex @font-lock-type-face))
+     (([(type) (subscript)] (identifier) @font-lock-type-face
+      (:match ,gdscript-ts--lower-case-type-regex @font-lock-type-face)))
      (enum_definition name: (_) @font-lock-type-face)
      (get_node) @font-lock-type-face)
 
