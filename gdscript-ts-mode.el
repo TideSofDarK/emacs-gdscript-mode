@@ -71,8 +71,17 @@ It must be a function with two arguments: TYPE and NAME.")
 
 ;;; Keywords
 
-;; (defvar gdscript-ts--keyword-regex
-;;   (rx bot (| ) eot))
+(defvar gdscript-ts--keyword-regex
+  (rx bot (| "func" "var" "const" "set" "get" "setget" "signal" "extends"
+             "match" "if" "elif" "else" "while" "break" "continue" "pass"
+             "return" "when" "yield" "await"
+             "class" "class_name" "abstract" "is" "onready" "tool" "static"
+             "export" "as" "void" "enum" "assert" "breakpoint"
+             "sync" "remote" "master" "puppet"
+             "remotesync" "mastersync" "puppetsync"
+             "trait" "namespace" "super"
+             "and" "or" "not"
+             "await" "yield" "self") eot))
 
 ;;; Types
 
@@ -137,16 +146,8 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'keyword
-   `(_ ["func" "var" "const" "set" "get" "setget" "signal" "extends"
-             "match" "if" "elif" "else" "while" "break" "continue" "pass"
-             "return" "when" "yield" "await"
-             "class" "class_name" "abstract" "is" "onready" "tool" "static"
-             "export" "as" "void" "enum" "assert" "breakpoint"
-             "sync" "remote" "master" "puppet"
-             "remotesync" "mastersync" "puppetsync"
-             "trait" "namespace" "super"
-             "and" "or" "not"
-             "await" "yield" "self"] @font-lock-keyword-face)
+   `((_ @font-lock-keyword-face (:match ,gdscript-ts--keyword-regex @font-lock-keyword-face))
+     (_ _ @font-lock-keyword-face (:match ,gdscript-ts--keyword-regex @font-lock-keyword-face)))
 
    :language 'gdscript
    :feature 'string
