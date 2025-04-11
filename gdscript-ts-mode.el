@@ -68,6 +68,7 @@ It must be a function with two arguments: TYPE and NAME.")
   (if (string= type "class")
       "*class definition*"
     "*function definition*"))
+
 
 ;;; Keywords
 
