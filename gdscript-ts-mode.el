@@ -169,7 +169,7 @@ It must be a function with two arguments: TYPE and NAME.")
    :language 'gdscript
    `(["+" "+="   "-" "-=" "*" "*=" "/" "/=" "^"  "^="  ">"  ">="
       "<" "<="   "|" "|=" "%" "%=" "&" "&=" ">>" ">>=" "<<" "<<="
-      "||" "&&" "==" "!=" "->" "~" "="] @font-lock-operator-face)
+      "||" "&&" "==" "!=" "->" "~" "=" ":="] @font-lock-operator-face)
 
    :language 'gdscript
    :feature 'escape-sequence
