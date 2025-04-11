@@ -146,7 +146,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'keyword
-   `((ERROR @font-lock-keyword-face (:match ,gdscript-ts--keyword-regex @font-lock-keyword-face))
+   `(;;(ERROR @font-lock-keyword-face (:match ,gdscript-ts--keyword-regex @font-lock-keyword-face))
      (_ _ @font-lock-keyword-face (:match ,gdscript-ts--keyword-regex @font-lock-keyword-face)))
 
    :language 'gdscript
