@@ -137,7 +137,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'keyword
-   `(["func" "var" "const" "set" "get" "setget" "signal" "extends"
+   `(_ ["func" "var" "const" "set" "get" "setget" "signal" "extends"
              "match" "if" "elif" "else" "while" "break" "continue" "pass"
              "return" "when" "yield" "await"
              "class" "class_name" "abstract" "is" "onready" "tool" "static"
