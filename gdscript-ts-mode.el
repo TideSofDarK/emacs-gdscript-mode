@@ -72,7 +72,7 @@ It must be a function with two arguments: TYPE and NAME.")
 ;;; Keywords
 
 (defvar gdscript-ts--keyword-regex
-  (rx bot (| "func" "var" "set" "get" "setget" "signal" "extends"
+  (rx bot (| "func" "var" "const" "set" "get" "setget" "signal" "extends"
              "match" "if" "elif" "else" "while" "break" "continue" "pass"
              "return" "when" "yield" "await"
              "class" "class_name" "abstract" "is" "onready" "tool" "static"
