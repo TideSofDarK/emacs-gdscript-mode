@@ -139,6 +139,11 @@ It must be a function with two arguments: TYPE and NAME.")
      (parameters (identifier) @font-lock-variable-name-face))
 
    :language 'gdscript
+   :feature 'annotation
+   '((annotation "@" @font-lock-preprocessor-face
+                 (identifier) @font-lock-preprocessor-face))
+
+   :language 'gdscript
    :feature 'keyword
    `((_ _ @font-lock-keyword-face (:match ,gdscript-ts--keyword-regex @font-lock-keyword-face)))
 
@@ -167,12 +172,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'escape-sequence
-   '((escape_sequence) @font-lock-escape-face)
-
-   :language 'gdscript
-   :feature 'annotation
-   '((annotation "@" @font-lock-preprocessor-face
-                 (identifier) @font-lock-preprocessor-face))))
+   '((escape_sequence) @font-lock-escape-face)))
 
 
 ;;; Funtion
