@@ -142,8 +142,7 @@ It must be a function with two arguments: TYPE and NAME.")
    :language 'gdscript
    :feature 'definition
    '((function_definition (name) @font-lock-function-name-face)
-     (class_definition (name) @font-lock-function-name-face)
-     (parameters (identifier) @font-lock-variable-name-face))
+     (class_definition (name) @font-lock-function-name-face))
 
    :language 'gdscript
    :feature 'annotation
@@ -161,7 +160,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'function
-   '((call (identifier) @font-lock-function-call-face (:match "preload" @font-lock-keyword-face))
+   '((call (identifier) @font-lock-function-call-face (:match "preload" @font-lock-function-call-face))
      (call (identifier) @font-lock-function-call-face)
      (attribute_call (identifier) @font-lock-function-call-face))
 
