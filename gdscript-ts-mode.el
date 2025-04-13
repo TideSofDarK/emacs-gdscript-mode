@@ -86,6 +86,9 @@ It must be a function with two arguments: TYPE and NAME.")
 
 ;;; Types
 
+(defvar gdscript-ts--builtin-type-regex
+  "\\`\\(Vector2\\|Vector2i\\|Vector3\\|Vector3i\\|Vector4\\|Vector4i\\|Color\\|Rect2\\|Rect2i\\|Array\\|Basis\\|Dictionary\\|Plane\\|Quat\\|RID\\|Rect3\\|Transform\\|Transform2D\\|Transform3D\\|AABB\\|String\\|Color\\|NodePath\\|PoolByteArray\\|PoolIntArray\\|PoolRealArray\\|PoolStringArray\\|PoolVector2Array\\|PoolVector3Array\\|PoolColorArray\\|bool\\|int\\|float\\|Signal\\|Callable\\|StringName\\|Quaternion\\|Projection\\|PackedByteArray\\|PackedInt32Array\\|PackedInt64Array\\|PackedFloat32Array\\|PackedFloat64Array\\|PackedStringArray\\|PackedVector2Array\\|PackedVector2iArray\\|PackedVector3Array\\|PackedVector3iArray\\|PackedVector4Array\\|PackedColorArray\\|JSON\\|UPNP\\|OS\\|IP\\|JSONRPC\\|XRVRS\\)\\'")
+
 (defvar gdscript-ts--type-regex
   "\\`\\(int\\|bool\\|float\\|void\\|[A-Z][a-zA-Z0-9_]*[a-z][a-zA-Z0-9_]*\\)\\'")
 
@@ -128,7 +131,9 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'type
-   `(((identifier) @font-lock-type-face
+   `(((identifier) @font-lock-builtin-face
+      (:match ,gdscript-ts--builtin-type-regex @font-lock-builtin-face))
+     ((identifier) @font-lock-type-face
       (:match ,gdscript-ts--type-regex @font-lock-type-face))
      (enum_definition name: (_) @font-lock-type-face)
      (class_name_statement (name) @font-lock-type-face)
