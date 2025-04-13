@@ -137,12 +137,12 @@ It must be a function with two arguments: TYPE and NAME.")
      ((identifier) @font-lock-type-face
       (:match ,gdscript-ts--type-regex @font-lock-type-face))
      (enum_definition name: (_) @font-lock-type-face)
-     (class_name_statement (name) @font-lock-type-face))
+     (class_name_statement (name) @font-lock-type-face)
+     (class_definition (name) @font-lock-type-face))
 
    :language 'gdscript
    :feature 'definition
-   '((function_definition (name) @font-lock-function-name-face)
-     (class_definition (name) @font-lock-function-name-face))
+   '((function_definition (name) @font-lock-function-name-face))
 
    :language 'gdscript
    :feature 'annotation
