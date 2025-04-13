@@ -160,7 +160,7 @@ It must be a function with two arguments: TYPE and NAME.")
 
    :language 'gdscript
    :feature 'function
-   '((call (identifier) @font-lock-function-call-face (:match "preload" @font-lock-function-call-face))
+   '((call (identifier) @font-lock-builtin-face (:match "preload" @font-lock-builtin-face))
      (call (identifier) @font-lock-function-call-face)
      (attribute_call (identifier) @font-lock-function-call-face))
 
